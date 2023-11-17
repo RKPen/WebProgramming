@@ -1,0 +1,44 @@
+
+body{
+    background-color: cyan;
+    display: flex;
+    flex-direction: column;
+    width:90%
+}
+
+span{
+    color: red;
+}
+
+h1{
+    color: red;
+    font-weight: bold;
+}
+
+.Bottom{
+    display: flex;
+    width: 250px;
+}
+
+table, th, td {
+    border: 1px solid;
+  }
+
+footer{
+    padding: 15px;
+    margin: 10px;
+}
+
+.textbox{
+    display: flex;
+    padding-top: 30px;
+    flex-direction: column;
+}
+
+a:visited{
+    color: red;
+}
+
+li{
+    padding: 5px;
+}

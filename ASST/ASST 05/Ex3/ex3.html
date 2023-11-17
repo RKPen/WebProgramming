@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Student Grades</title>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			$('#btnGetGrades').click(function(){
+				var searchValue = $('#txtSearch').val();
+				$.ajax({
+					type: "GET",
+					url: "ex3.xml",
+					dataType: "xml",
+					success: function(xml){
+						var found = false;
+						$(xml).find('student').each(function(){
+							var id = $(this).attr('id');
+							var name = $(this).find('name').text();
+							if (id == searchValue || name.toLowerCase() == searchValue.toLowerCase()) {
+								found = true;
+								var exam1 = parseFloat($(this).find('exam1').text());
+								var exam2 = parseFloat($(this).find('exam2').text());
+								var finalexam = parseFloat($(this).find('finalexam').text());
+								$.getJSON('weights.json', function(weights){
+									var finalAverage = exam1 * weights.exam1 + exam2 * weights.exam2 + finalexam * weights.finalexam;
+									$('#divResults').html('<p>ID: ' + id + '</p><p>Name: ' + name + '</p><p>Exam 1: ' + exam1 + '</p><p>Exam 2: ' + exam2 + '</p><p>Final Exam: ' + finalexam + '</p><p>Final Average: ' + finalAverage.toFixed(2) + '</p>');
+								});
+							}
+						});
+						if (!found) {
+							$('#divResults').html('<p>No student found with that ID or name.</p>');
+						}
+					},
+					error: function(){
+						$('#divResults').html('<p>Error loading XML file.</p>');
+					}
+				});
+			});
+		});
+	</script>
+</head>
+<body>
+	<label for="txtSearch">Search by ID or name:</label>
+	<input type="text" id="txtSearch">
+	<button id="btnGetGrades">Get Student Grades</button>
+	<div id="divResults"></div>
+</body>
+</html>

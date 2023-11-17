@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="ex1.js"></script>
+    </head>
+    <body>
+        <div class="form-1">
+            <h2>Leap Year</h2>
+            <label for="year">Year:</label>
+            <input type="text" id="year" name="year">
+            <br><br>
+            <textarea id="result1" rows="5" cols="50"></textarea>
+            <br><br>
+            <button onclick="checkYear()">Check year</button>
+            <br><br>
+        </div>
+
+        <div class="form-2">
+            <h2>Credit Card Verification</h2>
+            <label for="credit-card">Credit card number:</label>
+            <input type="text" id="credit-card" name="credit-card">
+            <br><br>
+            <textarea id="result2" rows="5" cols="50"></textarea>
+            <br><br>
+            <button onclick="validateCreditCard()">Validate</button>
+        </div>
+
+        <div class="form-3">
+            <h2>CMPS278 Final Grade Calculator</h2>
+
+        <form>
+            <label for="assignments">Assignments:</label>
+            <input type="text" id="assignments" name="assignments" value="0,0,0,0">
+            <br>
+            <label for="project">Project:</label>
+            <input type="text" id="project-grade" name="project" value="0">
+            <br>
+            <label for="quiz-grades">Quizzes:</label>
+            <input type="text" id="quiz-grades" name="quiz" value="0,0,0">
+            <br>
+            <label for="attendance">Attendance:</label>
+            <input type="text" id="attendance" name="attendance" value="0">
+            <br>
+            <label for="final-exam">Final Exam:</label>
+            <input type="text" id="final-exam" name="final-exam" value="0">
+            <br>
+            <button type="button" onclick="calculateFinalGrade()">Calculate Final Grade</button>
+            <br><br>
+        </form>
+            <textarea id="result3" rows="5" cols="50"></textarea>
+        </div>
+    </body>
+
+</html>

@@ -1,0 +1,45 @@
+body {
+    background-image: url("zen.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin-left: 28%;
+    margin-top: 5%;
+    font-family: "Georgia", sans-serif;
+    font-size: 9pt;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40%;
+}
+h1, h2, h3, h4, h5, h6 {
+    color: #7d775c;
+}
+h1 {
+    text-align: center;
+    text-decoration: underline;
+}
+.design{
+    background-color: #ddddbb;
+    text-align: center;
+    text-decoration: underline; 
+}
+.it{
+    display: flex;
+    font-style: italic;
+    width: 5cm;
+    padding: 1cm;
+}
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.design > ul {
+    list-style-type: none;
+}
+.design > ul > li {
+    display: inline-block;
+    margin: 0 1em;
+}
+

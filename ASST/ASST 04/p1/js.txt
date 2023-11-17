@@ -1,0 +1,102 @@
+function isLeapYear(year) {
+    if (year % 4 == 0) {
+      if (year % 100 == 0) {
+        if (year % 400 == 0) {
+          return true;
+        } else {
+          return false;
+        }
+      } else {
+        return true;
+      }
+    } else {
+      return false;
+    }
+  }
+
+function checkYear() {
+    const yearInput = document.getElementById("year");
+    const resultArea = document.getElementById("result1");
+    const year = yearInput.value;
+  
+    if (year.length !== 4 || isNaN(year)) {
+      resultArea.value += "THE ENTRY IS INVALID\n";
+    } else {
+      const isLeap = isLeapYear(year);
+      const leapText = isLeap ? "is" : "is not";
+      resultArea.value += year + " " + leapText + " a leap year\n";
+    }
+  
+    yearInput.value = "";
+  }
+
+
+  function validateCreditCard() {
+    const creditCardInput = document.getElementById("credit-card");
+    const resultParagraph = document.getElementById("result2");
+    const creditCardNumber = creditCardInput.value.replace(/-/g, "");
+  
+    if (!/^\d{16}$/.test(creditCardNumber)) {
+      resultParagraph.innerText = "Card number " + creditCardInput.value + " is invalid (wrong format)";
+      resultParagraph.style.color = "red";
+    } else if (/^(\d)\1{15}$/.test(creditCardNumber)) {
+      resultParagraph.innerText = "Card number " + creditCardInput.value + " is invalid (all digits are the same)";
+      resultParagraph.style.color = "red";
+    } else if (creditCardNumber.charAt(15) % 2 !== 0) {
+      resultParagraph.innerText = "Card number " + creditCardInput.value + " is invalid (last digit is odd)";
+      resultParagraph.style.color = "red";
+    } else if (creditCardNumber.split("").reduce((sum, digit) => sum + parseInt(digit), 0) <= 16) {
+      resultParagraph.innerText = "Card number " + creditCardInput.value + " is invalid (sum of digits is less than or equal to 16)";
+      resultParagraph.style.color = "red";
+    } else {
+      resultParagraph.innerText = "Card number " + creditCardInput.value + " is valid";
+      resultParagraph.style.color = "green";
+    }
+  
+    creditCardInput.value = "";
+  }
+
+  function calculateFinalGrade() {
+    // Get input values
+    const AssignmentGrades = document.getElementById('assignments').value.split(',').map(x => parseFloat(x.trim()));
+    const projectGrade = parseFloat(document.getElementById('project-grade').value.trim());
+    const quizGrades = document.getElementById('quiz-grades').value.split(',').map(x => parseFloat(x.trim()));
+    const attendanceGrade = parseFloat(document.getElementById('attendance').value.trim());
+    const finalExamGrade = parseFloat(document.getElementById('final-exam').value.trim());
+    const resultzone = document.getElementById("result3");
+
+    // Check input validity
+    if (AssignmentGrades.length > 6 || AssignmentGrades.some(x => isNaN(x) || x < 0 || x > 100)) {
+      document.getElementById('result3').innerHTML = 'Invalid homework grades';
+      return;
+    }
+    if (isNaN(projectGrade) || projectGrade < 0 || projectGrade > 100) {
+      document.getElementById('result3').innerHTML = 'Invalid project grade';
+      return;
+    }
+    if (quizGrades.length !== 3 || quizGrades.some(x => isNaN(x) || x < 0 || x > 100)) {
+      document.getElementById('result3').innerHTML = 'Invalid quiz grades';
+      return;
+    }
+    if (isNaN(attendanceGrade) || attendanceGrade < 0 || attendanceGrade > 100) {
+      document.getElementById('result3').innerHTML = 'Invalid attendance grade';
+      return;
+    }
+    if (isNaN(finalExamGrade) || finalExamGrade < 0 || finalExamGrade > 100) {
+      document.getElementById('result3').innerHTML = 'Invalid final exam grade';
+      return;
+    }
+
+    // Calculate grade
+    const AssignmentWeight = 0.1;
+    const projectWeight = 0.15;
+    const quiz1Weight = 0.15;
+    const quiz2Weight = 0.25;
+    const finalExamWeight = 0.3;
+    const attendanceWeight = 0.05;
+    const AssignmentTotal = AssignmentGrades.reduce((a, b) => a + b, 0);
+    const AssignmentAvg = AssignmentTotal / AssignmentGrades.length;
+    const quizAvg = quizGrades.reduce((a, b) => a + b, 0) / quizGrades.length;
+    const overallGrade = AssignmentAvg * AssignmentWeight + projectGrade * projectWeight + quizAvg * quiz1Weight + quizAvg * quiz2Weight + finalExamGrade * finalExamWeight + attendanceGrade * attendanceWeight;
+    resultzone.innerHTML = "Your final grade is " + overallGrade;
+}

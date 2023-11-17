@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Fayrouz YouTube Clips</title>
+  </head>
+  <body>
+    <ul id="clips-list"></ul>
+    <div id="player"></div>
+    <script src="youtube.js"></script>
+    <script>
+    //   // Load the JSON data (A)
+    //   var data = {"fayrouz":[{"ClipID":"EvHUkc2nX1U","ClipTitle":"ورقو الأصفر شهر أيلول","Writer":" جوزيف حرب"},{"ClipID":"IAqQOPeDcGo","ClipTitle":"احكيلي عن بلدي","Writer":"الأخوين رحباني"},{"ClipID":"uHRNHM8aSB0","ClipTitle":" راجعين ياهوى","Writer":"الأخوين رحباني"},{"ClipID":"nvr4lPoKqzI","ClipTitle":"كيفك إنت","Writer":"Ziad Rahbani"}]};
+      
+    //   // Get references to the list and player elements
+    //   var list = document.getElementById('clips-list');
+    //   var player = document.getElementById('player');
+      
+    //   // Iterate over the clips and create list items for each one
+    //   for (var i = 0; i < data.fayrouz.length; i++) {
+    //     var clip = data.fayrouz[i];
+    //     var li = document.createElement('li');
+    //     var link = document.createElement('a');
+    //     link.href = youtube.generateWatchUrl(clip.ClipID);
+    //     link.textContent = clip.ClipTitle + ' - ' + clip.Writer;
+        
+    //     // Add an event listener to show the player and set the source
+    //     link.addEventListener('click', function(event) {
+    //       event.preventDefault();
+    //       player.style.display = 'block';
+    //       player.innerHTML = '<iframe width="560" height="315" src="' + youtube.generateEmbedUrl(clip.ClipID) + '" frameborder="0" allowfullscreen></iframe>';
+    //     });
+
+    //     const thumbnailUrl = youtube.generateThumbnailUrl(clip.ClipID);
+    //         const thumbnail = new Image();
+    //         thumbnail.src = thumbnailUrl;
+    //         thumbnail.style.display = 'block';
+        
+    //     li.appendChild(link);
+    //     list.appendChild(li);
+    //     li.appendChild(thumbnail);
+    //   }
+
+      // Fetch the JSON data (B)
+      fetch('clips.json')
+        .then(response => response.json())
+        .then(data => {
+          // Get reference to the list element
+          const list = document.getElementById('clips-list');
+
+          // Iterate over the clips and create list items for each one
+          data.fayrouz.forEach(clip => {
+            // Create the list item
+            const li = document.createElement('li');
+
+            // Create the link
+            const link = document.createElement('a');
+            link.href = youtube.generateWatchUrl(clip.ClipID);
+            link.textContent = clip.ClipTitle + ' - ' + clip.Writer;
+
+            // Add an event listener to show the player and set the source
+            link.addEventListener('click', function(event) {
+              event.preventDefault();
+              player.style.display = 'block';
+              player.innerHTML = '<iframe width="560" height="315" src="' + youtube.generateEmbedUrl(clip.ClipID) + '" frameborder="0" allowfullscreen></iframe>';
+            });
+            li.appendChild(link);
+            list.appendChild(li);
+            // Create the thumbnail image
+            const thumbnailUrl = youtube.generateThumbnailUrl(clip.ClipID);
+            const thumbnail = new Image();
+            thumbnail.src = thumbnailUrl;
+            li.appendChild(thumbnail);
+            thumbnail.style.display = 'block';
+            });
+        });
+    </script>
+    </body>
+</html>
+

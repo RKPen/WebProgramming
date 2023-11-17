@@ -1,0 +1,41 @@
+header{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    background-color: cyan;
+    margin-top: 30px;
+}
+
+
+.item-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    border-left: 2px solid Green;
+    margin-left: 150px;
+    margin-top: -120px;
+    padding: 15px;
+}
+
+.extra{
+    float: right;
+    margin-right: 50px;
+    border: 3px dotted green;
+    padding:10px;
+    width:200px;
+    height:150px;
+    margin-top:-120px;
+}
+
+ul {
+    list-style-type: none;
+    margin-left: -40px;
+  }
+
+
+
+
+footer{
+    margin-top: 130px;
+}

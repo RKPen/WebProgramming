@@ -1,0 +1,18 @@
+window.onload = function(){
+const eatButton = document.getElementById("eat");
+const images = document.getElementsByTagName("img");
+eatButton.addEventListener("click", () => {
+  const foodname = document.getElementById("foodname").value.toLowerCase();
+  const foodgroup = document.getElementById("foodgroup").value.toLowerCase();
+  for (let i = 0; i < images.length; i++) {
+    const image = images[i];
+    console.log(foodname);
+    if (image.name.toLowerCase() == (foodname)) {
+      image.style.display = "none";
+    }
+    else if (image.alt.toLowerCase() == (foodgroup)) {  
+      console.log(image.alt);   
+      image.style.display = "none";
+    }
+  }
+})};
